@@ -10,20 +10,34 @@ import {
 } from "@/components/ui/carousel"
 import { DatePickerWithPresets } from '@/components/ui/datepick'
 
+import entries from '@/SampleEntries.json';
+
 
 export function CarouselDemo() {
+  // Create an empty map to store the transformed data
+  const entriesMap = new Map();
+
+  // Iterate through the JSON data array
+  entries.forEach(item => {
+    // Add each element to the map with the timestamp as the key and the entry as the value
+    entriesMap.set(item.timestamp, item.entry);
+  });
+
+  // Now, entriesMap contains each timestamp as key and entry as value
+  // console.log(entriesMap);
+
   return (
-    <Carousel className="w-full max-w-xs">
+    <Carousel className="w-full max-w-xl">
       <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index}>
+        {entries.map(entry => (
+          <CarouselItem key={entry.timestamp}>
             <div className="p-1">
               <Card>
                 <CardHeader>
-                    <CardTitle><DatePickerWithPresets /></CardTitle>
+                    <CardTitle className="flex justify-center p-6"><DatePickerWithPresets /></CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <span>{index + 1}</span>
+                <CardContent className="flex aspect-square p-6">
+                  <span>{entry.entry}</span>
                 </CardContent>
               </Card>
             </div>
