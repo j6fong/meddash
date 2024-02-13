@@ -126,6 +126,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <p> Changed. This is melissa and jessica</p>
     <div className="w-full flex justify-between">
       {/* Menubar aligned to the top left */}
       <MenubarDemo />
